@@ -1,5 +1,23 @@
+* {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 4fr));
+    gap: 20px;
+    padding: 20px;
+}
+
 .card {
-    width: 300px;
-    background-color: gray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     cursor: pointer;
+    padding: 2px;
+    border: 4px solid black;
+}
+
+.card-name {
+    font-size: 35px;
 }
