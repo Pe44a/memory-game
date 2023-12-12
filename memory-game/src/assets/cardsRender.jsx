@@ -1,10 +1,11 @@
 import { useState } from "react";
 // import { useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
+import  shuffle  from "./shuffle.jsx";
 import Card from "./card.jsx";
 
 function Cards() {
-    const cardsArray = [
+    const cardsArrays = [
         {cardName:'Bart', imageURL:'./card-images/bart.png', clicked:false, id:uuidv4()},
         {cardName:'Homer', imageURL:'./card-images/homer.png', clicked:false, id:uuidv4()},
         {cardName:'Lisa', imageURL:'./card-images/lisa.png', clicked:false, id:uuidv4()},
@@ -18,11 +19,15 @@ function Cards() {
         {cardName:'Willie', imageURL:'./card-images/willie.png', clicked:false, id:uuidv4()}
     ];
 
+    const cardsArraysIndex = cardsArrays.map((card, index) => {
+        return index;
+    });
+
+    shuffle(cardsArraysIndex); //Shuffles cardsArrayIndex values
 
     const [score, setScore] = useState(0);
     const [highScore, setHighScore] = useState(0);
-    const [array, setArray] = useState(cardsArray)
-    // const [highestScore, setHighestScore] = useState(0);
+    const [array, setArray] = useState(cardsArrays)
 
 
     function updatesScore(index) {
@@ -59,10 +64,10 @@ function Cards() {
         <div>High score: {highScore}</div>
         <div className="cards">
 
-            {cardsArray.map((card, index) => (
+            {cardsArraysIndex.map((cardIndex) => (
 
-                <Card key={card.id} cardName={card.cardName} imageURL={card.imageURL}
-                onClickFunction={()=> {updatesScore(index)}}/>
+                <Card key={cardsArrays[cardIndex].id} cardName={cardsArrays[cardIndex].cardName} imageURL={cardsArrays[cardIndex].imageURL}
+                onClickFunction={()=> {updatesScore(cardIndex)}}/>
             ))}
         </div>
         </>
