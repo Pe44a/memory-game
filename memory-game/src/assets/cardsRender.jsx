@@ -20,6 +20,7 @@ function Cards() {
 
 
     const [score, setScore] = useState(0);
+    const [highScore, setHighScore] = useState(0);
     const [array, setArray] = useState(cardsArray)
     // const [highestScore, setHighestScore] = useState(0);
 
@@ -40,8 +41,11 @@ function Cards() {
         } else {
             
             // adds point to score
+            // copies score to avoid data mutation
             let scoreClone = score;
             scoreClone += 1;
+
+            if(scoreClone >= highScore)  setHighScore(scoreClone);
             setScore(scoreClone)
 
             updatedCardsArray[index].clicked = true;
@@ -52,6 +56,7 @@ function Cards() {
     return(
         <>
         <div>Sore: {score}</div>
+        <div>High score: {highScore}</div>
         <div className="cards">
 
             {cardsArray.map((card, index) => (
