@@ -60,8 +60,11 @@ function Cards() {
 
     return(
         <>
-        <div>Sore: {score}</div>
-        <div>High score: {highScore}</div>
+        <div className="score">
+            <div>Sore: {score}</div>
+            <div>High score: {highScore}</div>
+        </div>
+        
         <div className="cards">
 
             {cardsArraysIndex.map((cardIndex) => (
